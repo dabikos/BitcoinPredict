@@ -1,0 +1,354 @@
+/* ===== CSS Custom Properties ===== */
+:root {
+  --bg: #0a0a0f;
+  --bg-secondary: #0f0f18;
+  --surface: #13131f;
+  --surface-hover: #1a1a2e;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+
+  --orange: #f7931a;
+  --orange-dim: rgba(247, 147, 26, 0.6);
+  --green: #00d4aa;
+  --red: #ff4757;
+  --blue: #4a9eff;
+
+  --text-primary: #f0f0f5;
+  --text-secondary: #b0b0c0;
+  --text-dim: #606078;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Background gradient */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(247, 147, 26, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 212, 170, 0.04), transparent),
+    radial-gradient(ellipse 70% 50% at 20% 80%, rgba(255, 71, 87, 0.03), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Container ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== App ===== */
+.app {
+  min-height: 100vh;
+}
+
+/* ===== Testnet Banner ===== */
+.testnet-banner {
+  background: linear-gradient(90deg, rgba(255, 179, 71, 0.15), rgba(247, 147, 26, 0.12), rgba(255, 179, 71, 0.15));
+  border-bottom: 1px solid rgba(255, 179, 71, 0.25);
+  color: #ffb347;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+/* ===== Hero ===== */
+.hero {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-top: 8px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.hero-accent {
+  background: linear-gradient(135deg, var(--orange), #ffb347);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ===== Sections ===== */
+.section {
+  margin-bottom: 32px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.filter-label {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* ===== Markets Grid ===== */
+.markets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+/* ===== Two Columns ===== */
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.col-main {
+  min-width: 0;
+}
+
+.col-side {
+  min-width: 0;
+}
+
+/* ===== Loading ===== */
+.app-loading {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== Footer ===== */
+.app-footer {
+  text-align: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+
+/* ===== Page Content ===== */
+.page-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  animation: pageIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animate markets page too */
+.hero,
+.section {
+  animation: pageIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.markets-grid > * {
+  animation: cardIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.markets-grid > *:nth-child(1) { animation-delay: 0.05s; }
+.markets-grid > *:nth-child(2) { animation-delay: 0.1s; }
+.markets-grid > *:nth-child(3) { animation-delay: 0.15s; }
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 15px;
+  color: var(--text-dim);
+}
+
+.connect-prompt {
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-top: 16px;
+}
+
+.connect-prompt p {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.connect-btn-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--orange), #e88a17);
+  border: none;
+  border-radius: 10px;
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.connect-btn-inline:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(247, 147, 26, 0.4);
+}
+
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.footer-icon {
+  color: var(--orange);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .markets-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+  }
+}

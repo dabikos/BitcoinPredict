@@ -1,0 +1,25 @@
+{
+  "name": "bitcoinpredict-contracts",
+  "version": "1.0.0",
+  "description": "BitcoinPredict prediction market smart contracts for OP_NET",
+  "scripts": {
+    "build": "asc assembly/index.ts --target release --outFile build/PredictionMarket.wasm --textFile build/PredictionMarket.wat --exportRuntime",
+    "build:debug": "asc assembly/index.ts --target debug --outFile build/PredictionMarket.debug.wasm",
+    "deploy": "ts-node --project tsconfig.deploy.json scripts/deploy.ts",
+    "create-markets": "ts-node --project tsconfig.deploy.json scripts/createMarkets.ts"
+  },
+  "dependencies": {
+    "@assemblyscript/loader": "^0.28.9",
+    "@btc-vision/as-bignum": "^0.1.2",
+    "@btc-vision/assemblyscript": "^0.29.2",
+    "@btc-vision/btc-runtime": "^1.11.0-rc.10",
+    "@btc-vision/opnet-transform": "^1.2.0"
+  },
+  "devDependencies": {
+    "@btc-vision/bitcoin": "^7.0.0-rc.6",
+    "@btc-vision/transaction": "^1.8.0-rc.10",
+    "opnet": "^1.8.1-rc.19",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  }
+}
